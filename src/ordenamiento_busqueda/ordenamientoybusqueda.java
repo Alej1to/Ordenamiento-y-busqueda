@@ -1,41 +1,95 @@
 package ordenamiento_busqueda;
 
-
+import java.util.Scanner;
 public class ordenamientoybusqueda 
 
-{
+{public static void quicksort(int A[], int izq, int der) {
 
+	  int pivote=A[izq]; 
+	  int i=izq;       
+	  int j=der;         
+	  int aux;
+	  
+	  while(i < j){                                                           
+	     while(A[i] <= pivote && i < j) i++; 
+	     while(A[j] > pivote) j--;           
+	     if (i < j) {                                            
+	         aux= A[i];                     
+	         A[i]=A[j];
+	         A[j]=aux;
+	     }
+	   }
+	   
+	   A[izq]=A[j];                                          
+	   A[j]=pivote;      
+	   
+	   if(izq < j-1)
+	      quicksort(A,izq,j-1);          
+	   if(j+1 < der)
+	      quicksort(A,j+1,der);  
+}
+public static Integer Binario(int[] data, int valor) {
+    int li = 0;
+    int ls = data.length;
+    while (li <= ls) {
+        int lm = (ls - li) / 2 + li;
+        if (data[lm] < valor) {
+            li = lm + 1;
+        } else if (data[lm] > valor) {
+            ls = lm - 1;
+        } else {
+            return lm;
+        }
+    }
+    return null;
+}
 	public static void main(String[] args) {
+	int dato;
+	Scanner sc = new Scanner(System.in);
+	/*System.out.print("ingrese el tamaño del arreglo: ");
+	int n = sc.nextInt();
+	*/
+	
+	
+	int arreglo1[] = {2, 4, 5, 8, 12, 14, 15, 11, 10, 9, 7, 13, 6, 1, 3};
+	/*
+	if(n <= 0) {
+		System.out.println("No puedes ingresar valores negativos");
+	 return;
+	}*/
+	
+	
+	 /*
+		int[] arreglo1 = new int[15];
+		for(int i = 0; i < 15; i++) 
+		{
+	    arreglo[i] = sc.nextInt(); 
+	
 	}
+		*/
 	
-	int arreglo[] = {2, 4, 5, 8, 12, 14, 15, 11, 10, 9, 7, 13, 6, 1, 3};
 	
-	public static void quicksort(int A[], int izq, int der) {
-
-		  int pivote=A[izq]; // tomamos primer elemento como pivote
-		  int i=izq;         // i realiza la búsqueda de izquierda a derecha
-		  int j=der;         // j realiza la búsqueda de derecha a izquierda
-		  int aux;
-		 
-		  while(i < j){                          // mientras no se crucen las búsquedas                                   
-		     while(A[i] <= pivote && i < j) i++; // busca elemento mayor que pivote
-		     while(A[j] > pivote) j--;           // busca elemento menor que pivote
-		     if (i < j) {                        // si no se han cruzado                      
-		         aux= A[i];                      // los intercambia
-		         A[i]=A[j];
-		         A[j]=aux;
-		     }
-		   }
-		   
-		   A[izq]=A[j];      // se coloca el pivote en su lugar de forma que tendremos                                    
-		   A[j]=pivote;      // los menores a su izquierda y los mayores a su derecha
-		   
-		   if(izq < j-1)
-		      quicksort(A,izq,j-1);          // ordenamos subarray izquierdo
-		   if(j+1 < der)
-		      quicksort(A,j+1,der);          // ordenamos subarray derecho
-		   
+	System.out.println("El arreglo ordenado es: " );
+		quicksort(arreglo1, 0, 14);
+		
+	for(int i = 0; i<15;i++)
+		{
+			System.out.print(String.valueOf(arreglo1[i]) + " ");
 		}
-
 	
+	
+   
+   
+   System.out.print("Cual numero desea buscar?");   
+  
+   
+  
+ 
+   for(int i = 0; i< 14; i++) {
+	     dato = sc.nextInt();
+	  
+         System.out.println("EL numero fue encontrado en la posicion:" + Binario(arreglo1, dato).toString());
+   }
+ 
+}
 }
